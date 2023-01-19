@@ -1,6 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { JobApplicationStatisticsComponent } from './job-application-statistics.component';
+import { faFileLines } from '@fortawesome/free-solid-svg-icons';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faClock } from '@fortawesome/free-regular-svg-icons';
+import { faListCheck } from '@fortawesome/free-solid-svg-icons';
 
 describe('JobApplicationStatisticsComponent', () => {
   let component: JobApplicationStatisticsComponent;
@@ -8,9 +12,9 @@ describe('JobApplicationStatisticsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ JobApplicationStatisticsComponent ]
-    })
-    .compileComponents();
+      imports: [faFileLines, faPlus, faClock, faListCheck],
+      declarations: [JobApplicationStatisticsComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(JobApplicationStatisticsComponent);
     component = fixture.componentInstance;
