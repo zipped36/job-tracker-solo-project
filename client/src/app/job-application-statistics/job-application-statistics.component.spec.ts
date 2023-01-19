@@ -14,6 +14,7 @@ describe('JobApplicationStatisticsComponent', () => {
     await TestBed.configureTestingModule({
       imports: [faFileLines, faPlus, faClock, faListCheck],
       declarations: [JobApplicationStatisticsComponent],
+      providers:[]
     }).compileComponents();
 
     fixture = TestBed.createComponent(JobApplicationStatisticsComponent);

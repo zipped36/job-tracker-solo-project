@@ -7,12 +7,13 @@ import { Application } from '../interfaces/Application';
   styleUrls: ['./job-status.component.css']
 })
 export class JobStatusComponent implements OnInit {
-  @Input() applicationList!: Application[]
+  @Input()
+  applicationList: Application[] = [];
 
-  pending!: Application[]
-  accepted!: Application[]
-  processing!: Application[]
-  rejected!: Application[]
+  pending: Application[] = []
+  accepted: Application[] = []
+  processing: Application[] = []
+  rejected: Application[] = []
 
   constructor() { }
   ngOnInit(): void {
