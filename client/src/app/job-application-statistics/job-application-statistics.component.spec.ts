@@ -1,10 +1,7 @@
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { JobApplicationStatisticsComponent } from './job-application-statistics.component';
-import { faFileLines } from '@fortawesome/free-solid-svg-icons';
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
-import { faClock } from '@fortawesome/free-regular-svg-icons';
-import { faListCheck } from '@fortawesome/free-solid-svg-icons';
 
 describe('JobApplicationStatisticsComponent', () => {
   let component: JobApplicationStatisticsComponent;
@@ -12,9 +9,8 @@ describe('JobApplicationStatisticsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [faFileLines, faPlus, faClock, faListCheck],
       declarations: [JobApplicationStatisticsComponent],
-      providers:[]
+      schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
 
     fixture = TestBed.createComponent(JobApplicationStatisticsComponent);
