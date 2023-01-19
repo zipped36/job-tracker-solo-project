@@ -1,20 +1,18 @@
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-
-
   loginForm = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
-    password: ['', Validators.required]
-  })
+    password: ['', Validators.required],
+  });
 
   responseData: any;
   isSubmitted: boolean = false;
@@ -24,18 +22,17 @@ export class LoginComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private Router: Router,
-    private fb: FormBuilder) {
+    private fb: FormBuilder
+  ) {
     localStorage.clear();
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
   handleLogin() {
-
     if (this.loginForm.valid) {
       this.authService.proceedLogin(this.loginForm.value).subscribe({
-        next: response => {
+        next: (response) => {
           this.responseData = response;
           console.log(response);
           localStorage.setItem('token', this.responseData.access_token);
@@ -44,19 +41,17 @@ export class LoginComponent implements OnInit {
           this.isError = false;
           this.isSubmitted = true;
           this.loginForm.reset();
-          
+
           setTimeout(() => {
             this.Router.navigate(['home']);
-          }, 2000)
+          }, 2000);
         },
-        error: error => {
+        error: (error) => {
           this.userError = error.error.message;
           this.isError = true;
-        }
-      })
+        },
+      });
     }
-
-
 
     //     this.authService.proceedLogin(this.loginForm.value).subscribe(response => {
     //       if (response !== null) {
@@ -80,8 +75,7 @@ export class LoginComponent implements OnInit {
     // }
   }
 
-  get loginFormControl(){
+  get loginFormControl() {
     return this.loginForm.controls;
   }
-
 }
