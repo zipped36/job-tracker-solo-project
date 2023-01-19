@@ -4,43 +4,39 @@ import { faFileLines } from '@fortawesome/free-solid-svg-icons';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { faClock } from '@fortawesome/free-regular-svg-icons';
 import { faListCheck } from '@fortawesome/free-solid-svg-icons';
-import { CommonModule } from '@angular/common';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-
 
 @Component({
   selector: 'app-job-application-statistics',
   templateUrl: './job-application-statistics.component.html',
-  styleUrls: ['./job-application-statistics.component.css']
+  styleUrls: ['./job-application-statistics.component.css'],
 })
 export class JobApplicationStatisticsComponent implements OnInit {
-  @Input() applicationList!: Application[]
+  @Input() applicationList!: Application[];
 
-  pending!: number
-  accepted!: number
-  processing!: number
-  rejected!: number
-  upComingInterview!: Application[]
+  pending!: number;
+  accepted!: number;
+  processing!: number;
+  rejected!: number;
+  upComingInterview!: Application[];
 
-  title1!: String
-  title2!: String
-  title3!: String
-  title4!: String
-
+  title1!: String;
+  title2!: String;
+  title3!: String;
+  title4!: String;
 
   faFileLines = faFileLines;
   faPlus = faPlus;
   faClock = faClock;
-  faListCheck=faListCheck;
+  faListCheck = faListCheck;
 
   constructor() { }
   ngOnInit(): void {
     this.filterApplication();
 
-    this.title1 = "Pending"
-    this.title2 = "Processing"
-    this.title3 = "Accepted"
-    this.title4 = "Rejected"
+    this.title1 = 'Pending';
+    this.title2 = 'Processing';
+    this.title3 = 'Accepted';
+    this.title4 = 'Rejected';
     // console.log(this.accepted);
     // console.log(this.processing);
     // console.log(this.pending);
@@ -48,12 +44,27 @@ export class JobApplicationStatisticsComponent implements OnInit {
   }
 
   filterApplication() {
-    this.accepted = this.applicationList.filter(application => application.status === 'accepted').length;
-    this.pending = this.applicationList.filter(application => application.status === 'pending').length;
-    this.rejected = this.applicationList.filter(application => application.status === 'rejected').length;
-    this.processing = this.applicationList.filter(application => application.status === 'processing').length;
-    this.upComingInterview = this.applicationList.filter(application => application.status === 'processing')
-    this.upComingInterview = this.upComingInterview.sort((a, b) => new Date(a.interviewDate).getTime() - new Date(b.interviewDate).getTime());
+    if (this.applicationList) {
+      this.accepted = this.applicationList.filter(
+        (application) => application.status === 'accepted'
+      ).length;
+      this.pending = this.applicationList.filter(
+        (application) => application.status === 'pending'
+      ).length;
+      this.rejected = this.applicationList.filter(
+        (application) => application.status === 'rejected'
+      ).length;
+      this.processing = this.applicationList.filter(
+        (application) => application.status === 'processing'
+      ).length;
+      this.upComingInterview = this.applicationList.filter(
+        (application) => application.status === 'processing'
+      );
+      this.upComingInterview = this.upComingInterview.sort(
+        (a, b) =>
+          new Date(a.interviewDate).getTime() -
+          new Date(b.interviewDate).getTime()
+      );
+    }
   }
-
 }

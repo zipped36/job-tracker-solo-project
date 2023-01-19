@@ -4,31 +4,30 @@ import { Application } from '../interfaces/Application';
 @Component({
   selector: 'app-application-list',
   templateUrl: './application-list.component.html',
-  styleUrls: ['./application-list.component.css']
+  styleUrls: ['./application-list.component.css'],
 })
 export class ApplicationListComponent implements OnInit {
-  @Input() applicationList!: Application[]
+  @Input() applicationList!: Application[];
 
-  title1!: String
-  title2!: String
-  title3!: String
-  title4!: String
+  title1!: String;
+  title2!: String;
+  title3!: String;
+  title4!: String;
 
-
-  pending!: Application[]
-  accepted!: Application[]
-  processing!: Application[]
-  rejected!: Application[]
+  pending!: Application[];
+  accepted!: Application[];
+  processing!: Application[];
+  rejected!: Application[];
 
   constructor() { }
 
   ngOnInit(): void {
     this.filterApplication();
 
-    this.title1 = "Pending"
-    this.title2 = "Processing"
-    this.title3 = "Accepted"
-    this.title4 = "Rejected"
+    this.title1 = 'Pending';
+    this.title2 = 'Processing';
+    this.title3 = 'Accepted';
+    this.title4 = 'Rejected';
 
     // console.log(this.applicationList)
 
@@ -39,14 +38,26 @@ export class ApplicationListComponent implements OnInit {
   }
 
   filterApplication() {
-    this.accepted = this.applicationList.filter(application => application.status === 'accepted');
-    this.pending = this.applicationList.filter(application => application.status === ('pending'));
-    this.rejected = this.applicationList.filter(application => application.status === 'rejected');
-    this.processing = this.applicationList.filter(application => application.status === 'processing');
+    if (this.applicationList) {
+      this.accepted = this.applicationList.filter(
+        (application) => application.status === 'accepted'
+      );
+      this.pending = this.applicationList.filter(
+        (application) => application.status === 'pending'
+      );
+      this.rejected = this.applicationList.filter(
+        (application) => application.status === 'rejected'
+      );
+      this.processing = this.applicationList.filter(
+        (application) => application.status === 'processing'
+      );
+    }
   }
 
   deleteApplicationFromList(id: String) {
-    const updatedList = this.applicationList.filter(application => application._id !== id);
+    const updatedList = this.applicationList.filter(
+      (application) => application._id !== id
+    );
     this.applicationList = updatedList;
     this.filterApplication();
   }
