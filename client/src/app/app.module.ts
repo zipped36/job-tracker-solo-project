@@ -53,4 +53,6 @@ import { JobStatisticsCardComponent } from './job-statistics-card/job-statistics
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+  title = 'hello'
+}
