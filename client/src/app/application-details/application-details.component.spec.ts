@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ApplicationDetailsComponent } from './application-details.component';
-import { HttpClientModule } from '@angular/common/http';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
@@ -18,6 +17,7 @@ import { faPaperclip } from '@fortawesome/free-solid-svg-icons';
 import { faRoute } from '@fortawesome/free-solid-svg-icons';
 import { faMapPin } from '@fortawesome/free-solid-svg-icons';
 import { faHouse } from '@fortawesome/free-solid-svg-icons';
+import { ApiClientService } from '../services/api-client.service';
 
 describe('ApplicationDetailsComponent', () => {
   let component: ApplicationDetailsComponent;
@@ -26,8 +26,7 @@ describe('ApplicationDetailsComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
-        HttpClientModule,
-        RouterTestingModule,
+        HttpClientTestingModule,
         faPaperPlane,
         faArrowLeftLong,
         faLocationDot,
@@ -41,15 +40,18 @@ describe('ApplicationDetailsComponent', () => {
         faMapPin,
         faHouse,
       ],
-      providers: [HttpClientTestingModule, RouterTestingModule],
+
+      providers: [
+        HttpClientTestingModule,
+        RouterTestingModule,
+        ApiClientService,
+      ],
       declarations: [ApplicationDetailsComponent],
     }).compileComponents();
-
     fixture = TestBed.createComponent(ApplicationDetailsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
-
   it('should create', () => {
     expect(component).toBeTruthy();
   });
