@@ -11,7 +11,11 @@ import { faListCheck } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./job-application-statistics.component.css'],
 })
 export class JobApplicationStatisticsComponent implements OnInit {
+<<<<<<< HEAD
   @Input() applicationList: Application[] = [];
+=======
+  @Input() applicationList: Application[]=[];
+>>>>>>> 24f69cfc72a0099ee3671747e532bd77d602eec6
 
   pending!: number;
   accepted!: number;
