@@ -6,11 +6,10 @@ import { FormBuilder } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import {} from ''
+
 describe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
-  
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -28,27 +27,22 @@ describe('LoginComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-  it('Empty form should be invalid' , () => {
-   expect(component.loginForm.valid).toBeFalsy();
-  })
+  it('Empty form should be invalid', () => {
+    expect(component.loginForm.valid).toBeFalsy();
+  });
   it('email field validity', () => {
-     //let errors = {}
-     
+    //let errors = {}
+
     let email = component.loginForm.controls['email'];
     //errors = email.errors || {};
-    
-    
+
     expect(email.valid).toBeFalsy();
     //expect(errors['required']).toBeTruthy()
-    
-    
-    
-  })
+  });
   it('password field validity ', () => {
     let password = component.loginForm.controls['password'];
     expect(password.valid).toBeFalsy();
-
-  })
+  });
   // it("submitting a form emits a users", () => {
   //   expect(component.loginForm.valid).toBeFalsy();
   //   component.loginForm.controls['email'].setValue("projectcode1@gamil.com")
@@ -57,5 +51,4 @@ describe('LoginComponent', () => {
   //   let user:any
   //   component.handleLogin.subscribe((value) => user = value)
   // })
-
 });
