@@ -6,6 +6,7 @@ import { FormBuilder } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { By } from '@angular/platform-browser';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -45,6 +46,7 @@ describe('LoginComponent', () => {
     expect(password.valid).toBeFalsy();
   });
 
+
   it('password should have atleast 8 characters',()=>{
     const pass = component.loginForm.get('password')
     pass?.setValue('1234567');
@@ -52,12 +54,30 @@ describe('LoginComponent', () => {
     expect(pass?.value?.length).toBeLessThan(8)
   })
   
-  // it("submitting a form emits a users", () => {
-  //   expect(component.loginForm.valid).toBeFalsy();
-  //   component.loginForm.controls['email'].setValue("projectcode1@gamil.com")
-  //   component.loginForm.controls['password'].setValue("12345678");
-  //   expect(component.loginForm.valid).toBeTruthy()
-  //   let user:any
-  //   component.handleLogin.subscribe((value) => user = value)
-  // })
+  it('submitting a form emits a users', () => {
+    expect(component.loginForm.valid).toBeFalsy();
+    component.loginForm.controls['email'].setValue('projectcode1@gamil.com');
+    component.loginForm.controls['password'].setValue('1234567');
+    expect(component.loginForm.valid).toBeTruthy();
+    // let user:any
+    // component.handleLogin.subscribe((value) => user = value)
+  });
+  it('should disabled attribute on submit button when login from is invalid', () => {
+    component.loginForm.get('email')?.setValue(null);
+    const logInBtn = fixture.debugElement.query(
+      By.css('.siginButton')
+    ).nativeElement;
+    expect(logInBtn.disabled).toBeTrue();
+    expect(logInBtn.textContent).toContain('Login');
+  });
+  it('should  call handlelogin when click on Login button', () => {
+    spyOn(component, 'handleLogin');
+    const logInButton = fixture.debugElement.query(
+      By.css('.siginButton')
+    ).nativeElement;
+    logInButton.click();
+    fixture.whenStable().then(() => {
+      expect(component.handleLogin()).toHaveBeenCalled();
+    });
+  });
 });
