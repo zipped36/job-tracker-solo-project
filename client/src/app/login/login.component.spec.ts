@@ -39,10 +39,19 @@ describe('LoginComponent', () => {
     expect(email.valid).toBeFalsy();
     //expect(errors['required']).toBeTruthy()
   });
+  
   it('password field validity ', () => {
     let password = component.loginForm.controls['password'];
     expect(password.valid).toBeFalsy();
   });
+
+  it('password should have atleast 8 characters',()=>{
+    const pass = component.loginForm.get('password')
+    pass?.setValue('1234567');
+    fixture.detectChanges()
+    expect(pass?.value?.length).toBeLessThan(8)
+  })
+  
   // it("submitting a form emits a users", () => {
   //   expect(component.loginForm.valid).toBeFalsy();
   //   component.loginForm.controls['email'].setValue("projectcode1@gamil.com")
