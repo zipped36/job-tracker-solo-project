@@ -27,6 +27,7 @@ describe('LoginComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+    console.log('hello');
   });
   it('Empty form should be invalid', () => {
     expect(component.loginForm.valid).toBeFalsy();
@@ -40,20 +41,19 @@ describe('LoginComponent', () => {
     expect(email.valid).toBeFalsy();
     //expect(errors['required']).toBeTruthy()
   });
-  
+
   it('password field validity ', () => {
     let password = component.loginForm.controls['password'];
     expect(password.valid).toBeFalsy();
   });
 
-
-  it('password should have atleast 8 characters',()=>{
-    const pass = component.loginForm.get('password')
+  it('password should have atleast 8 characters', () => {
+    const pass = component.loginForm.get('password');
     pass?.setValue('1234567');
-    fixture.detectChanges()
-    expect(pass?.value?.length).toBeLessThan(8)
-  })
-  
+    fixture.detectChanges();
+    expect(pass?.value?.length).toBeLessThan(8);
+  });
+
   it('submitting a form emits a users', () => {
     expect(component.loginForm.valid).toBeFalsy();
     component.loginForm.controls['email'].setValue('projectcode1@gamil.com');
@@ -80,10 +80,10 @@ describe('LoginComponent', () => {
   //     expect(component.handleLogin()).toHaveBeenCalled();
   //   });
   // });
-  it('should call handlelogin',()=>{
+  it('should call handlelogin', () => {
     const login = fixture.debugElement.query(By.css('#loginForm'));
-    const funcWorking = spyOn(component,'handleLogin')
-    login.triggerEventHandler('ngSubmit',null)
-    expect(funcWorking).toHaveBeenCalled()
-  })
+    const funcWorking = spyOn(component, 'handleLogin');
+    login.triggerEventHandler('ngSubmit', null);
+    expect(funcWorking).toHaveBeenCalled();
+  });
 });
