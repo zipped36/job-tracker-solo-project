@@ -70,14 +70,20 @@ describe('LoginComponent', () => {
     expect(logInBtn.disabled).toBeTrue();
     expect(logInBtn.textContent).toContain('Login');
   });
-  it('should  call handlelogin when click on Login button', () => {
-    spyOn(component, 'handleLogin');
-    const logInButton = fixture.debugElement.query(
-      By.css('.siginButton')
-    ).nativeElement;
-    logInButton.click();
-    fixture.whenStable().then(() => {
-      expect(component.handleLogin()).toHaveBeenCalled();
-    });
-  });
+  // it('should  call handlelogin when click on Login button', () => {
+  //   spyOn(component, 'handleLogin');
+  //   const logInButton = fixture.debugElement.query(
+  //     By.css('.siginButton')
+  //   ).nativeElement;
+  //   logInButton.click();
+  //   fixture.whenStable().then(() => {
+  //     expect(component.handleLogin()).toHaveBeenCalled();
+  //   });
+  // });
+  it('should call handlelogin',()=>{
+    const login = fixture.debugElement.query(By.css('#loginForm'));
+    const funcWorking = spyOn(component,'handleLogin')
+    login.triggerEventHandler('ngSubmit',null)
+    expect(funcWorking).toHaveBeenCalled()
+  })
 });
