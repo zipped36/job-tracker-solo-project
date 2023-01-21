@@ -34,6 +34,7 @@ describe('LoginComponent', () => {
   });
   it('email field validity', () => {
     //let errors = {}
+
     let email = component.loginForm.controls['email'];
     //errors = email.errors || {};
 
@@ -62,6 +63,7 @@ describe('LoginComponent', () => {
     // component.handleLogin.subscribe((value) => user = value)
   });
   it('should disabled attribute on submit button when login from is invalid', () => {
+    component.loginForm.get('email')?.setValue(null);
     const logInBtn = fixture.debugElement.query(
       By.css('.siginButton')
     ).nativeElement;
@@ -84,4 +86,9 @@ describe('LoginComponent', () => {
     login.triggerEventHandler('ngSubmit', null);
     expect(funcWorking).toHaveBeenCalled();
   });
+  it('should submit  the form',()=>{
+    const submitAction = spyOn(window,'confirm')
+    component.handleLogin()
+    expect(submitAction).not.toHaveBeenCalled()
+  })
 });
