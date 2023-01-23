@@ -1,36 +1,38 @@
-<div class="border  p-3 height bg-gray-50 leading-loose overflow-y-scroll">
-    <span class="text-xl font-bold my-2"> {{title}}</span>
-
+<div class="border p-3 height bg-gray-50 leading-loose overflow-y-scroll">
+    <span class="text-xl font-bold my-2"> {{ title }}</span>
 
     <div class="border shadow my-4 p-2 rounded bg-white" *ngFor="let application of applicationItems">
         <div class="flex justify-between">
-            <span class="text-md font-bold  rounded-full"
-                [ngClass]="{pending:title==='Pending' , processing:title==='Processing' , accepted:title==='Accepted',rejected:title==='Rejected'}">{{application.companyName}}</span>
+            <span class="text-md font-bold rounded-full" [ngClass]="{
+          pending: title === 'Pending',
+          processing: title === 'Processing',
+          accepted: title === 'Accepted',
+          rejected: title === 'Rejected'
+        }">{{ application.companyName }}</span>
             <div class="">
-                <button (click)="handleUpdate(application._id)">
-
+                <button (click)="handleUpdate(application._id)" class="editIcon">
                     <fa-icon class="mr-2 bg-gray-100 px-3 py-1 rounded text-slate-800" [icon]="faPenToSquare"></fa-icon>
                 </button>
-                <button (click)="handleDelete(application._id)">
+                <button (click)="handleDelete(application._id)" class="deleteIcon">
                     <fa-icon class="text-red-500 bg-red-100 px-3 py-1 rounded" [icon]="faTrashCan"></fa-icon>
                 </button>
             </div>
         </div>
-        <div class="font-semibold text mt-2">{{application.position}}</div>
-        <div class="text-base "><span>{{application.jobNature}}</span> <span class="fold-extrabold text-lg">,</span> <span
-                class="text-sm ml-2">{{application.employmentType}}</span> </div>
+        <div class="font-semibold text mt-2">{{ application.position }}</div>
+        <div class="text-base">
+            <span>{{ application.jobNature }}</span>
+            <span class="fold-extrabold text-lg">,</span>
+            <span class="text-sm ml-2">{{ application.employmentType }}</span>
+        </div>
 
         <!-- <div>{{application.location}}</div> -->
 
         <div>
             <span class="text">
-                <fa-icon class="font-bold text-orange-500 mr-1 " [icon]="faDollar"></fa-icon>
-                <span class="">{{application.salary}}
-                </span>
+                <fa-icon class="font-bold text-orange-500 mr-1" [icon]="faDollar"></fa-icon>
+                <span class="">{{ application.salary }} </span>
             </span>
         </div>
-
-
 
         <div class="bg-gray-200 text-center">
             <button class="w-full" (click)="handleDetails(application._id)">
@@ -39,5 +41,4 @@
             </button>
         </div>
     </div>
-
 </div>

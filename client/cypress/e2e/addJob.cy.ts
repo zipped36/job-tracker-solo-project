@@ -1,8 +1,8 @@
 describe('New Job can be created', () => {
   it('Sucesfully login test and login also have a Add Job buttton, and submit a new job application', () => {
     cy.visit('/');
-    cy.get('.emailField').type('test@gmail.com');
-    cy.get('.passwordField').type('123456');
+    cy.get('.emailField').type('Shahid@gmail.com');
+    cy.get('.passwordField').type('shahidcub201');
     cy.get('.siginButton').click();
     cy.get('.addJob').click();
     cy.get('.companyName').type('Selise');
@@ -18,7 +18,4 @@ describe('New Job can be created', () => {
     cy.get('.statusName').select('Pending');
     cy.get('.submitButton').click({ force: true });
   });
-  // it('Should be a Add Job button', () => {
-  //   cy.visit('/home');
-  // });
 });
